@@ -182,6 +182,3 @@ Developed as part of the **VIT-Odoo Hackathon**, this project demonstrates:
 
 **Kajal Jain**
 B.Tech Computer Science
-
-
-If you find this project valuable, consider giving it a ⭐ on GitHub.
