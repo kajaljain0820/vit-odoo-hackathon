@@ -1,0 +1,3 @@
+# JOURNAL.md
+
+> **Development Journal**
