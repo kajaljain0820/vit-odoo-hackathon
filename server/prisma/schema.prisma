@@ -1,31 +1,92 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  EMPLOYEE
-  MANAGER
-  ADMIN
+model Role {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  users User[]
+}
+
+model Company {
+  id              Int      @id @default(autoincrement())
+  name            String
+  country         String   @default("US")
+  defaultCurrency String   @default("USD")
+  createdAt       DateTime @default(now())
+  users           User[]
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        Int      @id @default(autoincrement())
   name      String
   email     String   @unique
   password  String
-  role      Role     @default(EMPLOYEE)
-  managerId String?
+  
+  roleId    Int
+  role      Role     @relation(fields: [roleId], references: [id])
+  
+  managerId Int?
+  companyId Int?
+  
   manager   User?    @relation("ManagerRelation", fields: [managerId], references: [id])
   employees User[]   @relation("ManagerRelation")
+  
+  company   Company? @relation(fields: [companyId], references: [id])
+  
+  expenses  Expense[]
+  approvals ApprovalRecord[]
+}
+
+enum ExpenseStatus {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  REJECTED
+}
+
+model Expense {
+  id          Int           @id @default(autoincrement())
+  amount      Float
+  currency    String        @default("USD")
+  category    String
+  description String?
+  date        DateTime      @default(now())
+  receiptUrl  String?
+  status      ExpenseStatus @default(DRAFT)
+  baseAmount  Float?
+  exchangeRate Float?
+  metadata    Json?
+  
+  userId      Int
+  user        User          @relation(fields: [userId], references: [id])
+  
+  approvals   ApprovalRecord[]
+}
+
+model ApprovalRecord {
+  id        Int           @id @default(autoincrement())
+  expenseId Int
+  userId    Int
+  status    ExpenseStatus
+  comment   String
+  date      DateTime      @default(now())
+
+  expense   Expense       @relation(fields: [expenseId], references: [id])
+  user      User          @relation(fields: [userId], references: [id])
+}
+
+model WorkflowRule {
+  id                  Int      @id @default(autoincrement())
+  name                String
+  rulesConfig         Json
+  active              Boolean  @default(true)
+  isManagerApprover   Boolean  @default(true)
+  specificApproverId  Int?
+  evaluationOrder     Int      @default(0)
 }

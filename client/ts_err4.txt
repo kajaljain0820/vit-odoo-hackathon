@@ -1,0 +1,8 @@
+src/components/SubmitExpenseForm.tsx(28,5): error TS2322: Type 'Resolver<{ amount: unknown; currency: string; category: string; description?: string; }, any, { amount: number; currency: string; category: string; description?: string; }>' is not assignable to type 'Resolver<{ amount: number; currency: string; category: string; description?: string; }, any, { amount: number; currency: string; category: string; description?: string; }>'.
+  Types of parameters 'options' and 'options' are incompatible.
+    Type 'ResolverOptions<{ amount: number; currency: string; category: string; description?: string; }>' is not assignable to type 'ResolverOptions<{ amount: unknown; currency: string; category: string; description?: string; }>'.
+      Type 'unknown' is not assignable to type 'number'.
+src/components/SubmitExpenseForm.tsx(85,36): error TS2345: Argument of type '(data: ExpenseFormValues) => Promise<void>' is not assignable to parameter of type 'SubmitHandler<TFieldValues>'.
+  Types of parameters 'data' and 'data' are incompatible.
+    Type 'TFieldValues' is not assignable to type '{ amount: number; currency: string; category: string; description?: string; }'.
+      Type 'FieldValues' is missing the following properties from type '{ amount: number; currency: string; category: string; description?: string; }': amount, currency, category

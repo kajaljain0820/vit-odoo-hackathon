@@ -1,0 +1,21 @@
+src/App.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/components/SubmitExpenseForm.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/components/SubmitExpenseForm.tsx(5,24): error TS2307: Cannot find module '@/components/ui/button' or its corresponding type declarations.
+src/components/SubmitExpenseForm.tsx(6,23): error TS2307: Cannot find module '@/components/ui/input' or its corresponding type declarations.
+src/components/SubmitExpenseForm.tsx(7,80): error TS2307: Cannot find module '@/components/ui/form' or its corresponding type declarations.
+src/components/SubmitExpenseForm.tsx(8,79): error TS2307: Cannot find module '@/components/ui/select' or its corresponding type declarations.
+src/components/SubmitExpenseForm.tsx(23,5): error TS2322: Type 'Resolver<{ amount: unknown; currency: string; category: string; description?: string | undefined; }, any, { amount: number; currency: string; category: string; description?: string | undefined; }>' is not assignable to type 'Resolver<{ amount: number; currency: string; category: string; description?: string | undefined; }, any, { amount: number; currency: string; category: string; description?: string | undefined; }>'.
+  Types of parameters 'options' and 'options' are incompatible.
+    Type 'ResolverOptions<{ amount: number; currency: string; category: string; description?: string | undefined; }>' is not assignable to type 'ResolverOptions<{ amount: unknown; currency: string; category: string; description?: string | undefined; }>'.
+      Type 'unknown' is not assignable to type 'number'.
+src/components/SubmitExpenseForm.tsx(69,43): error TS2345: Argument of type '(data: ExpenseFormValues) => Promise<void>' is not assignable to parameter of type 'SubmitHandler<TFieldValues>'.
+  Types of parameters 'data' and 'data' are incompatible.
+    Type 'TFieldValues' is not assignable to type '{ amount: number; currency: string; category: string; description?: string | undefined; }'.
+      Type 'FieldValues' is missing the following properties from type '{ amount: number; currency: string; category: string; description?: string | undefined; }': amount, currency, category
+src/components/SubmitExpenseForm.tsx(73,24): error TS7031: Binding element 'field' implicitly has an 'any' type.
+src/components/SubmitExpenseForm.tsx(87,24): error TS7031: Binding element 'field' implicitly has an 'any' type.
+src/components/SubmitExpenseForm.tsx(110,24): error TS7031: Binding element 'field' implicitly has an 'any' type.
+src/components/SubmitExpenseForm.tsx(134,24): error TS7031: Binding element 'field' implicitly has an 'any' type.
+src/components/SubmitExpenseForm.tsx(151,28): error TS7006: Parameter 'e' implicitly has an 'any' type.
+src/pages/Dashboard.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/pages/Dashboard.tsx(3,79): error TS2307: Cannot find module '@/components/ui/table' or its corresponding type declarations.

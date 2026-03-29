@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 export interface AuthRequest extends Request {
   user?: {
-    id: string;
+    id: number;
     role: string;
   };
 }
@@ -22,4 +22,11 @@ export const authenticate = (req: AuthRequest, res: Response, next: NextFunction
   } catch (error) {
     res.status(401).json({ message: 'Invalid token' });
   }
+};
+
+export const authorizeAdmin = (req: AuthRequest, res: Response, next: NextFunction) => {
+  if (req.user?.role !== 'ADMIN') {
+    return res.status(403).json({ message: 'Access denied. Admin role required.' });
+  }
+  next();
 };
