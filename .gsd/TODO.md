@@ -1,3 +1,0 @@
-# TODO.md
-
-> **Pending tasks**
